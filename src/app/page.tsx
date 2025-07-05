@@ -1,103 +1,185 @@
-import Image from "next/image";
+
+"use client";
+import React, { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, Shield, Star, Headphones, Users, MapPin, Clock } from "lucide-react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const router = useRouter();
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const statsRef = useRef<HTMLDivElement>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Testimonial data
+  const testimonials = [
+    {
+      quote: "Smart Choice made renting our property a breeze. Their support is unmatched!",
+      author: "Jane Doe",
+      role: "Landlord",
+    },
+    {
+      quote: "Found my dream apartment thanks to their personalized matching service!",
+      author: "John Smith",
+      role: "Tenant",
+    },
+    {
+      quote: "Their technology streamlined everything. Highly recommend!",
+      author: "Emily Brown",
+      role: "Property Owner",
+    },
+  ];
+
+  // Auto-rotate testimonials
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  // Animate stats on scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const counters = document.querySelectorAll(".stat-number");
+          counters.forEach((counter) => {
+            const updateCount = () => {
+              const target = parseInt(counter.getAttribute("data-target") || "0");
+              const count = parseInt((counter as HTMLElement).innerText);
+              const increment = Math.ceil(target / 100);
+              if (count < target) {
+                (counter as HTMLElement).innerText = `${Math.min(count + increment, target)}`;
+                setTimeout(updateCount, 20);
+              }
+            };
+            updateCount();
+          });
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="content">
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-content">
+          <h1 className="hero-title">Your Trusted Partner in Rental Success</h1>
+          <p className="hero-subtitle">
+            Discover premium properties and seamless rental management with Smart Choice.
+          </p>
+          <div className="hero-buttons">
+            <a
+              href="/contact"
+              className="contact-btn"
+              onClick={() => router.push("/contact")}
+            >
+              Get Started <ArrowRight size={20} />
+            </a>
+            <a
+              href="/services"
+              className="services-btn"
+              onClick={() => router.push("/services")}
+            >
+              Explore Services <ArrowRight size={20} />
+            </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Benefits List */}
+      <section className="benefits">
+        <h2>Why Rent with Us?</h2>
+        <ol className="benefits-list">
+          <li className="benefits-item">Discover top-tier rental management services.</li>
+          <li className="benefits-item">Trust us to handle your rental success.</li>
+          <li className="benefits-item">Explore our curated list of premium properties.</li>
+          <li className="benefits-item">Enjoy seamless tenant and landlord support.</li>
+        </ol>
+      </section>
+
+      {/* Features Section */}
+      <section className="features">
+        <h2>Why Choose Smart Choice?</h2>
+        <div className="feature-grid">
+          <div className="feature-item">
+            <Shield className="lucide" />
+            <h3>Trusted Service</h3>
+            <p>Reliable management for tenants and landlords.</p>
+          </div>
+          <div className="feature-item">
+            <Star className="lucide" />
+            <h3>Premium Properties</h3>
+            <p>Handpicked properties to suit your needs.</p>
+          </div>
+          <div className="feature-item">
+            <Headphones className="lucide" />
+            <h3>24/7 Support</h3>
+            <p>Round-the-clock assistance for all your queries.</p>
+          </div>
+          <div className="feature-item">
+            <Users className="lucide" />
+            <h3>Personalized Matching</h3>
+            <p>Find the perfect property with our tailored approach.</p>
+          </div>
+          <div className="feature-item">
+            <MapPin className="lucide" />
+            <h3>Prime Locations</h3>
+            <p>Properties in the most desirable neighborhoods.</p>
+          </div>
+          <div className="feature-item">
+            <Clock className="lucide" />
+            <h3>Efficient Processes</h3>
+            <p>Streamlined leasing with advanced technology.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div className="testimonial-slider">
+          <div className="testimonial-item">
+            <p className="testimonial-quote">"{testimonials[currentTestimonial].quote}"</p>
+            <p className="testimonial-author">
+              — {testimonials[currentTestimonial].author}, {testimonials[currentTestimonial].role}
+            </p>
+          </div>
+          <div className="testimonial-dots">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                className={`testimonial-dot ${index === currentTestimonial ? "active" : ""}`}
+                onClick={() => setCurrentTestimonial(index)}
+                aria-label={`View testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="stats" ref={statsRef}>
+        <h2>Our Achievements</h2>
+        <div className="stats-grid">
+          <div className="stat-item">
+            <span className="stat-number" data-target="500">0</span>
+            <p>Properties Managed</p>
+          </div>
+          <div className="stat-item">
+            <span className="stat-number" data-target="1000">0</span>
+            <p>Happy Clients</p>
+          </div>
+          <div className="stat-item">
+            <span className="stat-number" data-target="10">0</span>
+            <p>Years of Experience</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
