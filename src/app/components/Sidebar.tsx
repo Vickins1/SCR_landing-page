@@ -1,15 +1,40 @@
-
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 export default function Sidebar() {
   const menuToggleRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false); // ✅ ADDED STATE
   const router = useRouter();
 
+  // Theme toggle initialization
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      setIsDarkMode(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  // Theme toggle logic
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => {
+      const newTheme = !prev;
+      if (newTheme) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+      return newTheme;
+    });
+  };
+
+  // Sidebar toggle + accessibility handlers
   useEffect(() => {
     const menuToggle = menuToggleRef.current;
     const sidebar = sidebarRef.current;
@@ -81,6 +106,7 @@ export default function Sidebar() {
       >
         {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
+
       <div
         ref={sidebarRef}
         className="sidebar"
@@ -94,36 +120,73 @@ export default function Sidebar() {
             className="logo-image"
             aria-hidden="true"
           />
+
           <a
-            href="/about"
+            href="/how-it-works"
             className="sidebar-link"
-            onClick={() => handleNavigation("/about")}
+            onClick={() => handleNavigation("/how-it-works")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-info" />
+              <i className="lucide lucide-compass" />
             </span>
-            About Us
+            How It Works
           </a>
+
           <a
-            href="/properties"
+            href="/features"
             className="sidebar-link"
-            onClick={() => handleNavigation("/properties")}
+            onClick={() => handleNavigation("/features")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-home" />
+              <i className="lucide lucide-sparkles" />
             </span>
-            Our Properties
+            Features
           </a>
+
           <a
-            href="/contact"
+            href="/pricing"
             className="sidebar-link"
-            onClick={() => handleNavigation("/contact")}
+            onClick={() => handleNavigation("/pricing")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-mail" />
+              <i className="lucide lucide-wallet" />
             </span>
-            Contact
+            Pricing
           </a>
+
+          <a
+            href="/sign-in"
+            className="sidebar-link"
+            onClick={() => handleNavigation("/sign-in")}
+          >
+            <span className="icon" aria-hidden="true">
+              <i className="lucide lucide-log-in" />
+            </span>
+            Sign In
+          </a>
+
+          <a
+            href="/sign-up"
+            className="sidebar-link"
+            onClick={() => handleNavigation("/sign-up")}
+          >
+            <span className="icon" aria-hidden="true">
+              <i className="lucide lucide-user-plus" />
+            </span>
+            Sign Up
+          </a>
+
+          {/* ✅ Theme Toggle Button */}
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            <span className="toggle-label">
+              {isDarkMode ? "Light Mode" : "Dark Mode"}
+            </span>
+          </button>
         </div>
       </div>
     </>

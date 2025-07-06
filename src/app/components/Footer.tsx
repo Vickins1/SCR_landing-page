@@ -1,9 +1,8 @@
-
-import React from "react";
+import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="footer">
       <div className="footer-content">
         <p>
           © {new Date().getFullYear()} Smart Choice Rental Management Limited.
@@ -11,12 +10,20 @@ export default function Footer() {
         </p>
         <div className="social-links">
           <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <FaFacebookF size={20} />
+          </a>
+          <a
             href="https://twitter.com"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Twitter"
+            aria-label="X (formerly Twitter)"
           >
-            <i className="lucide lucide-twitter" />
+            <FaXTwitter size={20} />
           </a>
           <a
             href="https://instagram.com"
@@ -24,7 +31,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             aria-label="Instagram"
           >
-            <i className="lucide lucide-instagram" />
+            <FaInstagram size={20} />
           </a>
           <a
             href="https://linkedin.com"
@@ -32,9 +39,23 @@ export default function Footer() {
             rel="noopener noreferrer"
             aria-label="LinkedIn"
           >
-            <i className="lucide lucide-linkedin" />
+            <FaLinkedinIn size={20} />
           </a>
         </div>
+      </div>
+
+      {/* Developer credit below */}
+      <div className="developer-credit-wrapper">
+        <p className="developer-credit">
+          Developed by{" "}
+          <a
+            href="https://vickins-technologies.onrender.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Vickins Technologies
+          </a>
+        </p>
       </div>
     </footer>
   );

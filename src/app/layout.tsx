@@ -1,4 +1,3 @@
-
 import React from "react";
 import "./globals.css"; // Import global CSS
 import Navbar from "./components/Navbar";
@@ -23,7 +22,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
-        <link href="https://unpkg.com/lucide-static@0.428.0/font/lucide.css" rel="stylesheet" />
+        <link
+          href="https://unpkg.com/lucide-static@0.428.0/font/lucide.css"
+          rel="stylesheet"
+        />
+        <link rel="icon" href="/icon.png" type="image/x-icon" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Smart Choice Rental Management</title>
+        <meta
+          name="description"
+          content="Your trusted partner in rental success."
+        />
       </head>
       <body>
         <Navbar />
