@@ -115,6 +115,7 @@ export default function Sidebar() {
         aria-label="Mobile navigation menu"
       >
         <div className="sidebar-content">
+          <a href="/" onClick={() => handleNavigation("/")} aria-label="Home"></a>
           <Image
             src="/logo.png"
             alt="Smart Choice Rental Management Logo"

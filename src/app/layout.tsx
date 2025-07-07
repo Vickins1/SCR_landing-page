@@ -14,8 +14,12 @@ interface RootLayoutProps {
 export const metadata = {
   title: "Smart Choice Rental Management",
   description: "Your trusted partner in rental success.",
-  viewport: "width=device-width, initial-scale=1",
-  charset: "utf-8",
+};
+
+// Viewport export for responsive settings
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {

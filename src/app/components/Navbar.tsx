@@ -1,19 +1,26 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Moon, Sun } from "lucide-react"; // Removed unused Search import
+import { Moon, Sun, Compass, Sparkles, Wallet, LogIn, UserPlus } from "lucide-react";
 import Image from "next/image";
 
 export default function Navbar() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // Initialize isDarkMode with null to indicate "loading" state
+  const [isDarkMode, setIsDarkMode] = useState<boolean | null>(null);
   const router = useRouter();
 
-  // Theme toggle initialization
+  // Theme initialization
   useEffect(() => {
+    // Only run on client side
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setIsDarkMode(true);
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialDarkMode = savedTheme ? savedTheme === "dark" : prefersDark;
+    
+    setIsDarkMode(initialDarkMode);
+    if (initialDarkMode) {
       document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
@@ -37,17 +44,24 @@ export default function Navbar() {
     router.push(href);
   };
 
+  // Render nothing or a loading state until isDarkMode is determined
+  if (isDarkMode === null) {
+    return null; // Or a loading placeholder if desired
+  }
+
   return (
     <nav>
       <div className="container">
         <div className="logo">
-          <Image
-            src="/logo.png"
-            alt="Smart Choice Rental Management Logo"
-            width={130}
-            height={70}
-            className="logo-image"
-          />
+          <a href="/" onClick={() => handleNavigation("/")} aria-label="Home">
+            <Image
+              src="/logo.png"
+              alt="Smart Choice Rental Management Logo"
+              width={130}
+              height={70}
+              className="logo-image"
+            />
+          </a>
         </div>
         <div className="nav-links">
           <a
@@ -56,7 +70,7 @@ export default function Navbar() {
             onClick={() => handleNavigation("/how-it-works")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-compass" />
+              <Compass size={20} />
             </span>
             How It Works
           </a>
@@ -66,7 +80,7 @@ export default function Navbar() {
             onClick={() => handleNavigation("/features")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-sparkles" />
+              <Sparkles size={20} />
             </span>
             Features
           </a>
@@ -76,7 +90,7 @@ export default function Navbar() {
             onClick={() => handleNavigation("/pricing")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-wallet" />
+              <Wallet size={20} />
             </span>
             Pricing
           </a>
@@ -86,7 +100,7 @@ export default function Navbar() {
             onClick={() => handleNavigation("/sign-in")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-log-in" />
+              <LogIn size={20} />
             </span>
             Sign In
           </a>
@@ -96,7 +110,7 @@ export default function Navbar() {
             onClick={() => handleNavigation("/sign-up")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-user-plus" />
+              <UserPlus size={20} />
             </span>
             Sign Up
           </a>
