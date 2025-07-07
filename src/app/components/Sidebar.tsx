@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import Image from "next/image"; // ✅ Added import for Image component
+import { Menu, X, Sun, Moon, Compass, Wallet, LogIn, UserPlus, Info, Mail } from "lucide-react";
+import Image from "next/image";
 
 export default function Sidebar() {
   const menuToggleRef = useRef<HTMLButtonElement>(null);
@@ -115,34 +115,36 @@ export default function Sidebar() {
         aria-label="Mobile navigation menu"
       >
         <div className="sidebar-content">
-          <a href="/" onClick={() => handleNavigation("/")} aria-label="Home"></a>
-          <Image
-            src="/logo.png"
-            alt="Smart Choice Rental Management Logo"
-            width={130}
-            height={70}
-            className="logo-image"
-            aria-hidden="true"
-          />
+          <a href="/" onClick={() => handleNavigation("/")} aria-label="Home">
+            <Image
+              src="/logo.png"
+              alt="Smart Choice Rental Management Logo"
+              width={130}
+              height={70}
+              className="logo-image"
+              aria-hidden="true"
+            />
+          </a>
           <a
             href="/how-it-works"
             className="sidebar-link"
             onClick={() => handleNavigation("/how-it-works")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-compass" />
+              <Compass size={20} />
             </span>
             How It Works
           </a>
+          
           <a
-            href="/features"
+            href="/about"
             className="sidebar-link"
-            onClick={() => handleNavigation("/features")}
+            onClick={() => handleNavigation("/about")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-sparkles" />
+              <Info size={20} />
             </span>
-            Features
+            About Us
           </a>
           <a
             href="/pricing"
@@ -150,7 +152,7 @@ export default function Sidebar() {
             onClick={() => handleNavigation("/pricing")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-wallet" />
+              <Wallet size={20} />
             </span>
             Pricing
           </a>
@@ -160,7 +162,7 @@ export default function Sidebar() {
             onClick={() => handleNavigation("/sign-in")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-log-in" />
+              <LogIn size={20} />
             </span>
             Sign In
           </a>
@@ -170,9 +172,19 @@ export default function Sidebar() {
             onClick={() => handleNavigation("/sign-up")}
           >
             <span className="icon" aria-hidden="true">
-              <i className="lucide lucide-user-plus" />
+              <UserPlus size={20} />
             </span>
             Sign Up
+          </a>
+          <a
+            href="/contact-us"
+            className="sidebar-link"
+            onClick={() => handleNavigation("/contact-us")}
+          >
+            <span className="icon" aria-hidden="true">
+              <Mail size={20} />
+            </span>
+            Contact Us
           </a>
           <button
             className="theme-toggle"

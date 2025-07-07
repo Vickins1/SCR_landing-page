@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Moon, Sun, Compass, Sparkles, Wallet, LogIn, UserPlus } from "lucide-react";
+import { Moon, Sun, Compass, Sparkles, Wallet, LogIn, UserPlus, Info, Mail } from "lucide-react";
 import Image from "next/image";
 
 export default function Navbar() {
-  // Initialize isDarkMode with null to indicate "loading" state
-  const [isDarkMode, setIsDarkMode] = useState<boolean | null>(null);
+  // Initialize isDarkMode with a default value (false) to avoid rendering null
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const router = useRouter();
 
   // Theme initialization
@@ -15,7 +15,7 @@ export default function Navbar() {
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const initialDarkMode = savedTheme ? savedTheme === "dark" : prefersDark;
-    
+
     setIsDarkMode(initialDarkMode);
     if (initialDarkMode) {
       document.documentElement.classList.add("dark");
@@ -44,11 +44,6 @@ export default function Navbar() {
     router.push(href);
   };
 
-  // Render nothing or a loading state until isDarkMode is determined
-  if (isDarkMode === null) {
-    return null; // Or a loading placeholder if desired
-  }
-
   return (
     <nav>
       <div className="container">
@@ -65,6 +60,16 @@ export default function Navbar() {
         </div>
         <div className="nav-links">
           <a
+            href="/about"
+            className="nav-link"
+            onClick={() => handleNavigation("/about")}
+          >
+            <span className="icon" aria-hidden="true">
+              <Info size={20} />
+            </span>
+            About
+          </a>
+          <a
             href="/how-it-works"
             className="nav-link"
             onClick={() => handleNavigation("/how-it-works")}
@@ -74,16 +79,7 @@ export default function Navbar() {
             </span>
             How It Works
           </a>
-          <a
-            href="/features"
-            className="nav-link"
-            onClick={() => handleNavigation("/features")}
-          >
-            <span className="icon" aria-hidden="true">
-              <Sparkles size={20} />
-            </span>
-            Features
-          </a>
+          
           <a
             href="/pricing"
             className="nav-link"
@@ -113,6 +109,16 @@ export default function Navbar() {
               <UserPlus size={20} />
             </span>
             Sign Up
+          </a>
+          <a
+            href="/contact-us"
+            className="nav-link"
+            onClick={() => handleNavigation("/contact-us")}
+          >
+            <span className="icon" aria-hidden="true">
+              <Mail size={20} />
+            </span>
+            Contact Us
           </a>
           <button
             className="theme-toggle"
