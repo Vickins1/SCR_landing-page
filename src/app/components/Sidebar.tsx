@@ -2,12 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import Image from "next/image"; // ✅ Added import for Image component
 
 export default function Sidebar() {
   const menuToggleRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); // ✅ ADDED STATE
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const router = useRouter();
 
   // Theme toggle initialization
@@ -114,13 +115,14 @@ export default function Sidebar() {
         aria-label="Mobile navigation menu"
       >
         <div className="sidebar-content">
-          <img
+          <Image
             src="/logo.png"
             alt="Smart Choice Rental Management Logo"
+            width={130}
+            height={70}
             className="logo-image"
             aria-hidden="true"
           />
-
           <a
             href="/how-it-works"
             className="sidebar-link"
@@ -131,7 +133,6 @@ export default function Sidebar() {
             </span>
             How It Works
           </a>
-
           <a
             href="/features"
             className="sidebar-link"
@@ -142,7 +143,6 @@ export default function Sidebar() {
             </span>
             Features
           </a>
-
           <a
             href="/pricing"
             className="sidebar-link"
@@ -153,7 +153,6 @@ export default function Sidebar() {
             </span>
             Pricing
           </a>
-
           <a
             href="/sign-in"
             className="sidebar-link"
@@ -164,7 +163,6 @@ export default function Sidebar() {
             </span>
             Sign In
           </a>
-
           <a
             href="/sign-up"
             className="sidebar-link"
@@ -175,8 +173,6 @@ export default function Sidebar() {
             </span>
             Sign Up
           </a>
-
-          {/* ✅ Theme Toggle Button */}
           <button
             className="theme-toggle"
             onClick={toggleTheme}

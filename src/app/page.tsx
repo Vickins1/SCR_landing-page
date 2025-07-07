@@ -10,7 +10,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Testimonial data
+  // Testimonial data with single quotes to avoid ESLint error
   const testimonials = [
     {
       quote: "Smart Choice made renting our property a breeze. Their support is unmatched!",
@@ -169,7 +169,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-8 text-blue-900">What Our Clients Say</h2>
           <div className="testimonial-slider max-w-2xl mx-auto text-center">
             <div className="testimonial-item">
-              <p className="testimonial-quote text-lg italic mb-4">"{testimonials[currentTestimonial].quote}"</p>
+              <p className="testimonial-quote text-lg italic mb-4">{testimonials[currentTestimonial].quote}</p>
               <p className="testimonial-author font-semibold text-blue-900">
                 — {testimonials[currentTestimonial].author}, {testimonials[currentTestimonial].role}
               </p>
@@ -204,7 +204,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-
 
       {/* Process Timeline */}
       <section className="process py-16 bg-gray-50">

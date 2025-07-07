@@ -1,9 +1,8 @@
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Moon, Sun, Search } from "lucide-react";
-import Image from "next/image"; // Import next/image for optimized images
+import { Moon, Sun } from "lucide-react"; // Removed unused Search import
+import Image from "next/image";
 
 export default function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -38,15 +37,6 @@ export default function Navbar() {
     router.push(href);
   };
 
-  // Search handler
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const query = (e.currentTarget.elements.namedItem("search") as HTMLInputElement).value;
-    if (query) {
-      router.push(`/search?q=${encodeURIComponent(query)}`);
-    }
-  };
-
   return (
     <nav>
       <div className="container">
@@ -59,71 +49,65 @@ export default function Navbar() {
             className="logo-image"
           />
         </div>
-<div className="nav-links">
-  <a
-    href="/how-it-works"
-    className="nav-link"
-    onClick={() => handleNavigation("/how-it-works")}
-  >
-    <span className="icon" aria-hidden="true">
-      <i className="lucide lucide-compass" />
-    </span>
-    How It Works
-  </a>
-
-  <a
-    href="/features"
-    className="nav-link"
-    onClick={() => handleNavigation("/features")}
-  >
-    <span className="icon" aria-hidden="true">
-      <i className="lucide lucide-sparkles" />
-    </span>
-    Features
-  </a>
-
-  <a
-    href="/pricing"
-    className="nav-link"
-    onClick={() => handleNavigation("/pricing")}
-  >
-    <span className="icon" aria-hidden="true">
-      <i className="lucide lucide-wallet" />
-    </span>
-    Pricing
-  </a>
-
-  <a
-    href="/sign-in"
-    className="nav-link"
-    onClick={() => handleNavigation("/sign-in")}
-  >
-    <span className="icon" aria-hidden="true">
-      <i className="lucide lucide-log-in" />
-    </span>
-    Sign In
-  </a>
-
-  <a
-    href="/sign-up"
-    className="nav-link"
-    onClick={() => handleNavigation("/sign-up")}
-  >
-    <span className="icon" aria-hidden="true">
-      <i className="lucide lucide-user-plus" />
-    </span>
-    Sign Up
-  </a>
-
-  <button
-    className="theme-toggle"
-    onClick={toggleTheme}
-    aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-  >
-    {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-  </button>
-</div>
-
+        <div className="nav-links">
+          <a
+            href="/how-it-works"
+            className="nav-link"
+            onClick={() => handleNavigation("/how-it-works")}
+          >
+            <span className="icon" aria-hidden="true">
+              <i className="lucide lucide-compass" />
+            </span>
+            How It Works
+          </a>
+          <a
+            href="/features"
+            className="nav-link"
+            onClick={() => handleNavigation("/features")}
+          >
+            <span className="icon" aria-hidden="true">
+              <i className="lucide lucide-sparkles" />
+            </span>
+            Features
+          </a>
+          <a
+            href="/pricing"
+            className="nav-link"
+            onClick={() => handleNavigation("/pricing")}
+          >
+            <span className="icon" aria-hidden="true">
+              <i className="lucide lucide-wallet" />
+            </span>
+            Pricing
+          </a>
+          <a
+            href="/sign-in"
+            className="nav-link"
+            onClick={() => handleNavigation("/sign-in")}
+          >
+            <span className="icon" aria-hidden="true">
+              <i className="lucide lucide-log-in" />
+            </span>
+            Sign In
+          </a>
+          <a
+            href="/sign-up"
+            className="nav-link"
+            onClick={() => handleNavigation("/sign-up")}
+          >
+            <span className="icon" aria-hidden="true">
+              <i className="lucide lucide-user-plus" />
+            </span>
+            Sign Up
+          </a>
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+        </div>
       </div>
     </nav>
   );
