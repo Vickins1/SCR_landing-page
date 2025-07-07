@@ -1,4 +1,4 @@
-import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
+import { FaFacebookF, FaXTwitter, FaInstagram, FaLinkedinIn, FaTiktok } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -10,12 +10,20 @@ export default function Footer() {
         </p>
         <div className="social-links">
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/share/1Gb77VsVt1/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
           >
             <FaFacebookF size={20} />
+          </a>
+          <a
+            href="https://www.tiktok.com/@smartchoicerentalmanage?_t=ZM-8xpaVff2dHh&_r=1"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok"
+          >
+            <FaTiktok size={20} />
           </a>
           <a
             href="https://twitter.com"
@@ -33,14 +41,7 @@ export default function Footer() {
           >
             <FaInstagram size={20} />
           </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedinIn size={20} />
-          </a>
+          
         </div>
       </div>
 
