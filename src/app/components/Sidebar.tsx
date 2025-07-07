@@ -1,17 +1,15 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Menu, X, Sun, Moon, Compass, Wallet, LogIn, UserPlus, Info, Mail } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Sidebar() {
   const menuToggleRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const router = useRouter();
 
-  // Theme toggle initialization
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
@@ -20,7 +18,6 @@ export default function Sidebar() {
     }
   }, []);
 
-  // Theme toggle logic
   const toggleTheme = () => {
     setIsDarkMode((prev) => {
       const newTheme = !prev;
@@ -35,7 +32,6 @@ export default function Sidebar() {
     });
   };
 
-  // Sidebar toggle + accessibility handlers
   useEffect(() => {
     const menuToggle = menuToggleRef.current;
     const sidebar = sidebarRef.current;
@@ -90,13 +86,6 @@ export default function Sidebar() {
     }
   }, [isSidebarOpen]);
 
-  const handleNavigation = (href: string) => {
-    setIsSidebarOpen(false);
-    sidebarRef.current?.classList.remove("active");
-    menuToggleRef.current?.setAttribute("aria-expanded", "false");
-    router.push(href);
-  };
-
   return (
     <>
       <button
@@ -115,7 +104,7 @@ export default function Sidebar() {
         aria-label="Mobile navigation menu"
       >
         <div className="sidebar-content">
-          <a href="/" onClick={() => handleNavigation("/")} aria-label="Home">
+          <Link href="/" aria-label="Home">
             <Image
               src="/logo.png"
               alt="Smart Choice Rental Management Logo"
@@ -124,68 +113,43 @@ export default function Sidebar() {
               className="logo-image"
               aria-hidden="true"
             />
-          </a>
-          <a
-            href="/how-it-works"
-            className="sidebar-link"
-            onClick={() => handleNavigation("/how-it-works")}
-          >
+          </Link>
+          <Link href="/how-it-works" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <Compass size={20} />
             </span>
             How It Works
-          </a>
-          
-          <a
-            href="/about"
-            className="sidebar-link"
-            onClick={() => handleNavigation("/about")}
-          >
+          </Link>
+          <Link href="/about" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <Info size={20} />
             </span>
             About Us
-          </a>
-          <a
-            href="/pricing"
-            className="sidebar-link"
-            onClick={() => handleNavigation("/pricing")}
-          >
+          </Link>
+          <Link href="/pricing" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <Wallet size={20} />
             </span>
             Pricing
-          </a>
-          <a
-            href="/sign-in"
-            className="sidebar-link"
-            onClick={() => handleNavigation("/sign-in")}
-          >
+          </Link>
+          <Link href="/sign-in" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <LogIn size={20} />
             </span>
             Sign In
-          </a>
-          <a
-            href="/sign-up"
-            className="sidebar-link"
-            onClick={() => handleNavigation("/sign-up")}
-          >
+          </Link>
+          <Link href="/sign-up" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <UserPlus size={20} />
             </span>
             Sign Up
-          </a>
-          <a
-            href="/contact-us"
-            className="sidebar-link"
-            onClick={() => handleNavigation("/contact-us")}
-          >
+          </Link>
+          <Link href="/contact-us" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <Mail size={20} />
             </span>
             Contact Us
-          </a>
+          </Link>
           <button
             className="theme-toggle"
             onClick={toggleTheme}
