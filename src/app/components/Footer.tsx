@@ -18,7 +18,7 @@ export default function Footer() {
             <FaFacebookF size={20} />
           </a>
           <a
-            href="https://twitter.com"
+            href="https://tinyurl.com/2p4hkmsv"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="X (formerly Twitter)"
