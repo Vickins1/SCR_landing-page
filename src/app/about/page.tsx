@@ -19,7 +19,7 @@ export default function About() {
         <div className="about-content flex flex-col lg:flex-row gap-8 items-center">
           <div className="about-text-container">
             <p className="about-text">
-              Smart Choice Rental Management Limited, headquartered in Kutus, Kenya, is a premier property management firm with a proven track record of excellence. We deliver end-to-end rental solutions for residential, commercial, and mixed-use properties, ensuring reliable returns and stress-free management through professional expertise and innovative technology.
+              Smart Choice Rental Management Limited, headquartered in Kerugoya, Kenya, is a premier property management firm with a proven track record of excellence. We deliver end-to-end rental solutions for residential, commercial, and mixed-use properties, ensuring reliable returns and stress-free management through professional expertise and innovative technology.
             </p>
           </div>
           <div className="about-image-container">
@@ -75,8 +75,8 @@ export default function About() {
         <h2 className="section-title">Contact Information</h2>
         <div className="contact-info bg-white p-6 rounded-xl shadow-lg">
           <ul className="space-y-3">
-            <li className="contact-item"><strong>Office:</strong> Kutus, Kenya</li>
-            <li className="contact-item"><strong>Phone:</strong> +254 011 764-9850</li>
+            <li className="contact-item"><strong>Office:</strong> Kerugoya, Kenya</li>
+            <li className="contact-item"><strong>Phone:</strong> +254 117 649-850 Or +254 702 036-837</li>
             <li className="contact-item"><strong>Email:</strong> smartchoicerentalmanagement@gmail.com</li>
           </ul>
         </div>

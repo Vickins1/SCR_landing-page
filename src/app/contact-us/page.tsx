@@ -39,11 +39,11 @@ export default function ContactUs() {
               </p>
               <p className="contact-detail flex items-center">
                 <Phone className="contact-icon text-green-300 w-6 h-6 mr-4 animate-pulse-slow" />
-                <span>+254 011 764-9850</span>
+                <span>+254 117 649 850 Or +254 702 036 837</span>
               </p>
               <p className="contact-detail flex items-center">
                 <MapPin className="contact-icon text-green-300 w-6 h-6 mr-4 animate-pulse-slow" />
-                <span>Kutus, Kenya</span>
+                <span>Kerugoya, Kenya</span>
               </p>
             </div>
             <div className="mt-8">
