@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react"; // Added Send icon for button
-import "./page.css"; // Ensure custom styles are imported
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+import "./page.css";
 
 export default function ContactUs() {
   const [name, setName] = useState("");
@@ -21,7 +21,7 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="content bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 min-h-screen">
+    <div className="contact-page bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 min-h-screen">
       <section className="contact-hero">
         <div className="contact-hero-content">
           <h1 className="contact-title">Connect with Smart Choice</h1>
@@ -29,34 +29,34 @@ export default function ContactUs() {
         </div>
       </section>
       <section className="contact-container max-w-6xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="contact-info bg-white p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300">
-            <h2 className="text-2xl font-bold text-blue-900 mb-6">Contact Details</h2>
-            <div className="space-y-4">
-              <p className="flex items-center text-lg">
-                <Mail className="text-green-300 w-6 h-6 mr-3" />
+        <div className="contact-grid grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="contact-info bg-white/80 backdrop-blur-md p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <h2 className="contact-heading">Contact Details</h2>
+            <div className="space-y-6 mt-6">
+              <p className="contact-detail flex items-center">
+                <Mail className="contact-icon text-green-300 w-6 h-6 mr-4 animate-pulse-slow" />
                 <span>smartchoicerentalmanagement@gmail.com</span>
               </p>
-              <p className="flex items-center text-lg">
-                <Phone className="text-green-300 w-6 h-6 mr-3" />
+              <p className="contact-detail flex items-center">
+                <Phone className="contact-icon text-green-300 w-6 h-6 mr-4 animate-pulse-slow" />
                 <span>+254 011 764-9850</span>
               </p>
-              <p className="flex items-center text-lg">
-                <MapPin className="text-green-300 w-6 h-6 mr-3" />
+              <p className="contact-detail flex items-center">
+                <MapPin className="contact-icon text-green-300 w-6 h-6 mr-4 animate-pulse-slow" />
                 <span>Kutus, Kenya</span>
               </p>
             </div>
             <div className="mt-8">
-              <h3 className="text-xl font-semibold text-blue-900 mb-4">Office Hours</h3>
-              <p className="text-gray-600">Monday - Friday: 8:00 AM - 5:00 PM EAT</p>
-              <p className="text-gray-600">Saturday: 9:00 AM - 1:00 PM EAT</p>
+              <h3 className="contact-subheading">Office Hours</h3>
+              <p className="contact-text">Monday - Friday: 8:00 AM - 5:00 PM EAT</p>
+              <p className="contact-text">Saturday: 9:00 AM - 1:00 PM EAT</p>
             </div>
           </div>
-          <div className="contact-form bg-white p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300">
-            <h2 className="text-2xl font-bold text-blue-900 mb-6">Send Us a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="contact-form bg-white/80 backdrop-blur-md p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <h2 className="contact-heading">Send Us a Message</h2>
+            <form onSubmit={handleSubmit} className="space-y-6 mt-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="name" className="contact-label block text-sm font-medium text-gray-700">
                   Full Name
                 </label>
                 <input
@@ -67,10 +67,11 @@ export default function ContactUs() {
                   placeholder="Enter your name"
                   className="contact-input"
                   required
+                  aria-required="true"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="contact-label block text-sm font-medium text-gray-700">
                   Email Address
                 </label>
                 <input
@@ -81,10 +82,11 @@ export default function ContactUs() {
                   placeholder="Enter your email"
                   className="contact-input"
                   required
+                  aria-required="true"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="message" className="contact-label block text-sm font-medium text-gray-700">
                   Message
                 </label>
                 <textarea
@@ -94,16 +96,19 @@ export default function ContactUs() {
                   placeholder="Your message here"
                   className="contact-input h-32 resize-none"
                   required
+                  aria-required="true"
                 />
               </div>
               <button
                 type="submit"
                 className="contact-button"
                 disabled={isSubmitting}
+                aria-busy={isSubmitting}
+                aria-label="Send message"
               >
                 {isSubmitting ? (
                   <>
-                    <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24" aria-hidden="true">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
@@ -111,7 +116,8 @@ export default function ContactUs() {
                   </>
                 ) : (
                   <>
-                    <Send size={18} className="mr-2" /> Send Message
+                    <Send size={18} className="mr-2 animate-bounce" aria-hidden="true" />
+                    Send Message
                   </>
                 )}
               </button>
