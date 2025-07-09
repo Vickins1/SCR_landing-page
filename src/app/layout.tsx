@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import BackToTopButton from "./components/BackToTopButton";
+import Preloader from "./components/Preloader"; // Add this
 
 // Define TypeScript interface for props
 interface RootLayoutProps {
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         {/* Favicon and Icon */}
         <link rel="icon" href="/icon.png" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         
         {/* Lucide Icons */}
         <link
@@ -92,6 +94,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </head>
       <body>
+        <Preloader />
         <Navbar />
         <Sidebar />
         <main>{children}</main>
