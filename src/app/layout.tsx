@@ -59,11 +59,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
     name: "Smart Choice Rental Management",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "123 Main St", // Replace with actual address
+      streetAddress: "123 Main St", 
       addressLocality: "City", // Replace with actual city
       addressRegion: "State", // Replace with actual state
       postalCode: "12345", // Replace with actual postal code
-      addressCountry: "US",
+      addressCountry: "Kenya", 
     },
     geo: {
       "@type": "GeoCoordinates",
@@ -89,7 +89,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="robots" content="index, follow" />
         <meta
           name="google-site-verification"
-          content="YOUR_VERIFICATION_CODE" // Replace with actual GSC verification code
+          content="YOUR_VERIFICATION_CODE"
         />
         <link
           rel="canonical"
@@ -142,7 +142,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* Google Analytics */}
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX" // Replace with actual GA4 ID
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
         ></script>
         <script
           dangerouslySetInnerHTML={{
