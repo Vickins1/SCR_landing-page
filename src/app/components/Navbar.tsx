@@ -67,13 +67,13 @@ export default function Navbar() {
             </span>
             Pricing
           </Link>
-          <Link href="/sign-in" className="nav-link">
+          <Link href="https://app.smartchoicerentalmanagement.com/" className="nav-link">
             <span className="icon" aria-hidden="true">
               <LogIn size={20} />
             </span>
             Sign In
           </Link>
-          <Link href="/sign-up" className="nav-link">
+          <Link href="https://app.smartchoicerentalmanagement.com/" className="nav-link">
             <span className="icon" aria-hidden="true">
               <UserPlus size={20} />
             </span>

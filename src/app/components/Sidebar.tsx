@@ -132,13 +132,13 @@ export default function Sidebar() {
             </span>
             Pricing
           </Link>
-          <Link href="/sign-in" className="sidebar-link">
+          <Link href="https://app.smartchoicerentalmanagement.com/" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <LogIn size={20} />
             </span>
             Sign In
           </Link>
-          <Link href="/sign-up" className="sidebar-link">
+          <Link href="https://app.smartchoicerentalmanagement.com/" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <UserPlus size={20} />
             </span>
