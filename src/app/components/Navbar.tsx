@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Moon, Sun, Compass, Wallet, LogIn, UserPlus, Info, Mail } from "lucide-react";
+import { Moon, Sun, Compass, Wallet, LogIn, UserPlus, Info, Mail, Building2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -55,6 +55,15 @@ export default function Navbar() {
             </span>
             About Us
           </Link>
+
+          <Link href="https://app.smartchoicerentalmanagement.com/properties" className="nav-link">
+          <span className="icon" aria-hidden="true">
+            <span className="icon" aria-hidden="true">
+              <Building2 size={20} />
+              </span>
+          </span>
+          </Link>
+
           <Link href="/how-it-works" className="nav-link">
             <span className="icon" aria-hidden="true">
               <Compass size={20} />

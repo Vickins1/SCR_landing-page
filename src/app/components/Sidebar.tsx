@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { Menu, X, Sun, Moon, Compass, Wallet, LogIn, UserPlus, Info, Mail } from "lucide-react";
+import { Menu, X, Sun, Moon, Compass, Wallet, LogIn, UserPlus, Info, Mail, Building2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -120,6 +120,13 @@ export default function Sidebar() {
             </span>
             How It Works
           </Link>
+          <Link href="/https://app.smartchoicerentalmanagement.com/properties" className="sidebar-link">
+            <span className="icon" aria-hidden="true">
+              <Building2 size={20} />
+            </span>
+            Properties
+          </Link>
+
           <Link href="/about" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <Info size={20} />
