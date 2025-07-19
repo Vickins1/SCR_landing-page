@@ -62,6 +62,7 @@ export default function Navbar() {
               <Building2 size={20} />
               </span>
           </span>
+          Properties
           </Link>
 
           <Link href="/how-it-works" className="nav-link">
