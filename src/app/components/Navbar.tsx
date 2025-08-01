@@ -56,7 +56,7 @@ export default function Navbar() {
             About Us
           </Link>
 
-          <Link href="https://app.smartchoicerentalmanagement.com/property-listing" className="nav-link">
+          <Link href="https://app.smartchoicerentalmanagement.com/property-listings" className="nav-link">
           <span className="icon" aria-hidden="true">
             <span className="icon" aria-hidden="true">
               <Building2 size={20} />
