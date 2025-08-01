@@ -55,7 +55,6 @@ export default function Navbar() {
             </span>
             About Us
           </Link>
-
           <Link href="https://app.smartchoicerentalmanagement.com/property-listings" className="nav-link">
           <span className="icon" aria-hidden="true">
             <span className="icon" aria-hidden="true">
@@ -64,7 +63,6 @@ export default function Navbar() {
           </span>
           Properties
           </Link>
-
           <Link href="/how-it-works" className="nav-link">
             <span className="icon" aria-hidden="true">
               <Compass size={20} />
