@@ -81,10 +81,10 @@ export default function Home() {
           <div className="hero-buttons">
             <button
               className="contact-btn"
-              onClick={() => router.push("/contact-us")}
+              onClick={() => router.push("https://app.smartchoicerentalmanagement.com/sign-up")}
               aria-label="Contact Smart Choice for property management"
             >
-              Contact Us <ArrowRight size={20} className="ml-2" />
+              Get Started <ArrowRight size={20} className="ml-2" />
             </button>
             <button
               className="services-btn"
