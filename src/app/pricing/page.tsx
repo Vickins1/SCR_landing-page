@@ -1,100 +1,330 @@
 "use client";
-import React from "react";
-import { CheckCircle } from "lucide-react";
-import "./page.css"; // Ensure custom styles are imported
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ChevronDown, ChevronUp, Plus, Minus } from "lucide-react";
+import "./page.css";
+
+interface PricingTier {
+  range: number[];
+  fee: number | string;
+}
+
+interface UnitType {
+  type: string;
+  pricing: {
+    RentCollection: PricingTier[];
+    FullManagement: string;
+  };
+}
+
+const UNIT_TYPES: UnitType[] = [
+  {
+    type: "Single",
+    pricing: {
+      RentCollection: [
+        { range: [5, 20], fee: 2500 },
+        { range: [21, 50], fee: 5000 },
+        { range: [51, 100], fee: 8000 },
+        { range: [101, Infinity], fee: "Contact us for Pricing" },
+      ],
+      FullManagement: "Contact us for Pricing",
+    },
+  },
+  {
+    type: "Studio",
+    pricing: {
+      RentCollection: [
+        { range: [5, 20], fee: 2500 },
+        { range: [21, 50], fee: 5000 },
+        { range: [51, 100], fee: 8000 },
+        { range: [101, Infinity], fee: "Contact us for Pricing" },
+      ],
+      FullManagement: "Contact us for Pricing",
+    },
+  },
+  {
+    type: "1-Bedroom",
+    pricing: {
+      RentCollection: [
+        { range: [1, 15], fee: 5000 },
+        { range: [16, 25], fee: 8000 },
+        { range: [26, Infinity], fee: "Contact us for Pricing" },
+      ],
+      FullManagement: "Contact us for Pricing",
+    },
+  },
+  {
+    type: "2-Bedroom",
+    pricing: {
+      RentCollection: [
+        { range: [1, 15], fee: 5000 },
+        { range: [16, 25], fee: 8000 },
+        { range: [26, Infinity], fee: "Contact us for Pricing" },
+      ],
+      FullManagement: "Contact us for Pricing",
+    },
+  },
+  {
+    type: "3-Bedroom",
+    pricing: {
+      RentCollection: [
+        { range: [1, 15], fee: 5000 },
+        { range: [16, 25], fee: 8000 },
+        { range: [26, Infinity], fee: "Contact us for Pricing" },
+      ],
+      FullManagement: "Contact us for Pricing",
+    },
+  },
+  {
+    type: "Duplex",
+    pricing: {
+      RentCollection: [
+        { range: [1, 15], fee: 5000 },
+        { range: [16, 25], fee: 8000 },
+        { range: [26, Infinity], fee: "Contact us for Pricing" },
+      ],
+      FullManagement: "Contact us for Pricing",
+    },
+  },
+  {
+    type: "Commercial",
+    pricing: {
+      RentCollection: [
+        { range: [1, 15], fee: 5000 },
+        { range: [16, 25], fee: 8000 },
+        { range: [26, Infinity], fee: "Contact us for Pricing" },
+      ],
+      FullManagement: "Contact us for Pricing",
+    },
+  },
+];
+
+export function getManagementFee(unit: {
+  type: string;
+  managementType: "RentCollection" | "FullManagement";
+  quantity: number;
+}): number | string {
+  const unitType = UNIT_TYPES.find((ut) => ut.type === unit.type);
+  if (!unitType) return "Invalid unit type";
+
+  const pricing = unitType.pricing[unit.managementType];
+  if (typeof pricing === "string") return pricing;
+
+  for (const tier of pricing) {
+    const [min, max] = tier.range;
+    if (unit.quantity >= min && unit.quantity <= max) {
+      return tier.fee;
+    }
+  }
+  return "Contact us for Pricing";
+}
 
 export default function Pricing() {
+  const [selectedUnitType, setSelectedUnitType] = useState<string>(UNIT_TYPES[0].type);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [managementType, setManagementType] = useState<"RentCollection" | "FullManagement">("RentCollection");
+  const [isComparisonOpen, setIsComparisonOpen] = useState<boolean>(false);
+  const router = useRouter();
+
+  const handleUnitTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedUnitType(e.target.value);
+  };
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value === "") {
+      setQuantity(1); // Default to 1 if input is cleared
+    } else {
+      const parsed = parseInt(value);
+      if (!isNaN(parsed) && parsed >= 1) {
+        setQuantity(parsed);
+      }
+    }
+  };
+
+  const handleQuantityIncrement = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const handleQuantityDecrement = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  };
+
+  const handleQuantityKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      handleQuantityIncrement();
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      handleQuantityDecrement();
+    }
+  };
+
+  const handleManagementTypeChange = (type: "RentCollection" | "FullManagement") => {
+    setManagementType(type);
+  };
+
+  const handleGetStarted = () => {
+    router.push("/signup");
+  };
+
+  const fee = getManagementFee({ type: selectedUnitType, managementType, quantity });
+
   return (
-    <div className="content bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 min-h-screen">
+    <div className="content">
       <section className="pricing-hero">
         <div className="pricing-hero-content">
-          <h1 className="pricing-title">Transparent Pricing Plans</h1>
-          <p className="pricing-subtitle">Affordable solutions tailored to your property needs.</p>
+          <h1 className="pricing-title">Tailored Property Management Pricing</h1>
+          <p className="pricing-subtitle">
+            Discover flexible pricing plans designed for your property management needs.
+          </p>
         </div>
       </section>
-      <section className="pricing-container max-w-6xl mx-auto px-6 py-12">
-        <div className="pricing-plans grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="pricing-card bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-3 transition-all duration-300">
-            <h2 className="text-xl font-bold text-blue-900 mb-4">Basic Plan</h2>
-            <p className="text-3xl font-bold text-green-300 mb-6">$99<span className="text-lg font-normal text-gray-600">/month</span></p>
-            <ul className="space-y-3 mb-6">
-              <li className="flex items-center"><CheckCircle className="text-green-300 w-5 h-5 mr-2" /> Tenant Screening</li>
-              <li className="flex items-center"><CheckCircle className="text-green-300 w-5 h-5 mr-2" /> Rent Collection</li>
-            </ul>
-            <button className="pricing-button w-full">Get Started</button>
+
+      <section className="pricing-container">
+        <div className="pricing-calculator">
+          <h2>Calculate Your Management Fees</h2>
+          <div className="grid gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="unit-type">
+                Unit Type
+              </label>
+              <select
+                id="unit-type"
+                value={selectedUnitType}
+                onChange={handleUnitTypeChange}
+                className="w-full"
+                aria-label="Select unit type"
+              >
+                {UNIT_TYPES.map((unit) => (
+                  <option key={unit.type} value={unit.type}>
+                    {unit.type}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="quantity">
+                Number of Units
+              </label>
+              <div className="quantity-input-container">
+                <button
+                  type="button"
+                  onClick={handleQuantityDecrement}
+                  className="quantity-button"
+                  aria-label="Decrease number of units"
+                  disabled={quantity <= 1}
+                >
+                  <Minus className="w-5 h-5" />
+                </button>
+                <input
+                  id="quantity"
+                  type="number"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                  onKeyDown={handleQuantityKeyDown}
+                  min="1"
+                  className="quantity-input"
+                  aria-label="Enter number of units"
+                />
+                <button
+                  type="button"
+                  onClick={handleQuantityIncrement}
+                  className="quantity-button"
+                  aria-label="Increase number of units"
+                >
+                  <Plus className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Management Type</label>
+              <div className="flex space-x-4">
+                <button
+                  type="button"
+                  onClick={() => handleManagementTypeChange("RentCollection")}
+                  className={`flex-1 ${managementType === "RentCollection" ? "bg-blue-600" : "bg-gray-200"}`}
+                  aria-pressed={managementType === "RentCollection"}
+                >
+                  Rent Collection
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleManagementTypeChange("FullManagement")}
+                  className={`flex-1 ${managementType === "FullManagement" ? "bg-blue-600" : "bg-gray-200"}`}
+                  aria-pressed={managementType === "FullManagement"}
+                >
+                  Full Management
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="pricing-card bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-3 transition-all duration-300 recommended">
-            <div className="pricing-recommended-badge">Recommended</div>
-            <h2 className="text-xl font-bold text-blue-900 mb-4">Pro Plan</h2>
-            <p className="text-3xl font-bold text-green-300 mb-6">$199<span className="text-lg font-normal text-gray-600">/month</span></p>
-            <ul className="space-y-3 mb-6">
-              <li className="flex items-center"><CheckCircle className="text-green-300 w-5 h-5 mr-2" /> All Basic Features</li>
-              <li className="flex items-center"><CheckCircle className="text-green-300 w-5 h-5 mr-2" /> Maintenance Repairs</li>
-              <li className="flex items-center"><CheckCircle className="text-green-300 w-5 h-5 mr-2" /> Financial Reporting</li>
-            </ul>
-            <button className="pricing-button w-full">Get Started</button>
-          </div>
-          <div className="pricing-card bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-3 transition-all duration-300">
-            <h2 className="text-xl font-bold text-blue-900 mb-4">Premium Plan</h2>
-            <p className="text-3xl font-bold text-green-300 mb-6">$299<span className="text-lg font-normal text-gray-600">/month</span></p>
-            <ul className="space-y-3 mb-6">
-              <li className="flex items-center"><CheckCircle className="text-green-300 w-5 h-5 mr-2" /> All Pro Features</li>
-              <li className="flex items-center"><CheckCircle className="text-green-300 w-5 h-5 mr-2" /> Legal Compliance</li>
-              <li className="flex items-center"><CheckCircle className="text-green-300 w-5 h-5 mr-2" /> 24/7 Support</li>
-            </ul>
-            <button className="pricing-button w-full">Get Started</button>
+          <div className="mt-8 text-center">
+            <p className="text-3xl font-bold text-green-500">
+              {typeof fee === "number" ? `KSH ${fee.toLocaleString()}/month` : fee}
+            </p>
+            <button type="button" className="mt-6 bg-green-500" onClick={handleGetStarted}>
+              Get Started Now
+            </button>
           </div>
         </div>
-        <div className="pricing-comparison mt-12">
-          <h2 className="text-2xl font-bold text-blue-900 mb-4 text-center">Plan Comparison</h2>
-          <table className="w-full bg-white rounded-lg shadow-lg">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="p-4 text-left">Feature</th>
-                <th className="p-4 text-center">Basic</th>
-                <th className="p-4 text-center">Pro</th>
-                <th className="p-4 text-center">Premium</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="p-4 border-t">Tenant Screening</td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr>
-                <td className="p-4 border-t">Rent Collection</td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr>
-                <td className="p-4 border-t">Maintenance Repairs</td>
-                <td className="p-4 border-t text-center"></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr>
-                <td className="p-4 border-t">Financial Reporting</td>
-                <td className="p-4 border-t text-center"></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr>
-                <td className="p-4 border-t">Legal Compliance</td>
-                <td className="p-4 border-t text-center"></td>
-                <td className="p-4 border-t text-center"></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr>
-                <td className="p-4 border-t">24/7 Support</td>
-                <td className="p-4 border-t text-center"></td>
-                <td className="p-4 border-t text-center"></td>
-                <td className="p-4 border-t text-center"><CheckCircle className="text-green-300 w-5 h-5 mx-auto" /></td>
-              </tr>
-            </tbody>
-          </table>
+
+        <div className="pricing-comparison">
+          <button
+            type="button"
+            onClick={() => setIsComparisonOpen(!isComparisonOpen)}
+            aria-expanded={isComparisonOpen}
+            aria-controls="pricing-comparison-table"
+          >
+            Pricing Comparison
+            {isComparisonOpen ? (
+              <ChevronUp className="ml-2 w-6 h-6" aria-hidden="true" />
+            ) : (
+              <ChevronDown className="ml-2 w-6 h-6" aria-hidden="true" />
+            )}
+          </button>
+          {isComparisonOpen && (
+            <table id="pricing-comparison-table" className="w-full">
+              <thead>
+                <tr>
+                  <th scope="col">Unit Type</th>
+                  <th scope="col">Rent Collection (1-15 units)</th>
+                  <th scope="col">Rent Collection (16-25 units)</th>
+                  <th scope="col">Rent Collection (26+ units)</th>
+                  <th scope="col">Full Management</th>
+                </tr>
+              </thead>
+              <tbody>
+                {UNIT_TYPES.map((unit) => (
+                  <tr key={unit.type}>
+                    <td>{unit.type}</td>
+                    <td>
+                      {unit.pricing.RentCollection[0]?.fee
+                        ? typeof unit.pricing.RentCollection[0].fee === "number"
+                          ? `KSH ${unit.pricing.RentCollection[0].fee.toLocaleString()}`
+                          : unit.pricing.RentCollection[0].fee
+                        : "N/A"}
+                    </td>
+                    <td>
+                      {unit.pricing.RentCollection[1]?.fee
+                        ? typeof unit.pricing.RentCollection[1].fee === "number"
+                          ? `KSH ${unit.pricing.RentCollection[1].fee.toLocaleString()}`
+                          : unit.pricing.RentCollection[1].fee
+                        : "N/A"}
+                    </td>
+                    <td>
+                      {unit.pricing.RentCollection[2]?.fee
+                        ? typeof unit.pricing.RentCollection[2].fee === "number"
+                          ? `KSH ${unit.pricing.RentCollection[2].fee.toLocaleString()}`
+                          : unit.pricing.RentCollection[2].fee
+                        : "Contact us for Pricing"}
+                    </td>
+                    <td>{unit.pricing.FullManagement}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </section>
     </div>
