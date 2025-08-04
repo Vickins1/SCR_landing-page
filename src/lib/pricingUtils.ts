@@ -25,7 +25,7 @@ export const UnitType: UnitType[] = [
     },
   },
   {
-    type: "Studio",
+    type: "Bedsitter",
     pricing: {
       RentCollection: [
         { range: [5, 20], fee: 2500 },

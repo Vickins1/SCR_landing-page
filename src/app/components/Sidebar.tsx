@@ -120,7 +120,7 @@ export default function Sidebar() {
             </span>
             How It Works
           </Link>
-          <Link href="/https://app.smartchoicerentalmanagement.com/properties" className="sidebar-link">
+          <Link href="/https://app.smartchoicerentalmanagement.com/property-listings" className="sidebar-link">
             <span className="icon" aria-hidden="true">
               <Building2 size={20} />
             </span>
