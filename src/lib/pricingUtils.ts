@@ -17,8 +17,8 @@ export const UnitType: UnitType[] = [
     pricing: {
       RentCollection: [
         { range: [5, 20], fee: 2500 },
-        { range: [21, 50], fee: 5000 },
-        { range: [51, 100], fee: 8000 },
+        { range: [21, 50], fee: 4500 },
+        { range: [51, 100], fee: 7000 },
         { range: [101, Infinity], fee: "Contact us for Pricing" },
       ],
       FullManagement: "Contact us for Pricing",
@@ -29,8 +29,8 @@ export const UnitType: UnitType[] = [
     pricing: {
       RentCollection: [
         { range: [5, 20], fee: 2500 },
-        { range: [21, 50], fee: 5000 },
-        { range: [51, 100], fee: 8000 },
+        { range: [21, 50], fee: 4500 },
+        { range: [51, 100], fee: 7000 },
         { range: [101, Infinity], fee: "Contact us for Pricing" },
       ],
       FullManagement: "Contact us for Pricing",
@@ -40,9 +40,10 @@ export const UnitType: UnitType[] = [
     type: "1-Bedroom",
     pricing: {
       RentCollection: [
-        { range: [1, 15], fee: 5000 },
-        { range: [16, 25], fee: 8000 },
-        { range: [26, Infinity], fee: "Contact us for Pricing" },
+        { range: [5, 20], fee: 2500 },
+        { range: [21, 50], fee: 4500 },
+        { range: [51, 100], fee: 7000 },
+        { range: [101, Infinity], fee: "Contact us for Pricing" },
       ],
       FullManagement: "Contact us for Pricing",
     },
@@ -51,9 +52,10 @@ export const UnitType: UnitType[] = [
     type: "2-Bedroom",
     pricing: {
       RentCollection: [
-        { range: [1, 15], fee: 5000 },
-        { range: [16, 25], fee: 8000 },
-        { range: [26, Infinity], fee: "Contact us for Pricing" },
+        { range: [5, 20], fee: 2500 },
+        { range: [21, 50], fee: 4500 },
+        { range: [51, 100], fee: 7000 },
+        { range: [101, Infinity], fee: "Contact us for Pricing" },
       ],
       FullManagement: "Contact us for Pricing",
     },
@@ -62,9 +64,10 @@ export const UnitType: UnitType[] = [
     type: "3-Bedroom",
     pricing: {
       RentCollection: [
-        { range: [1, 15], fee: 5000 },
-        { range: [16, 25], fee: 8000 },
-        { range: [26, Infinity], fee: "Contact us for Pricing" },
+        { range: [5, 20], fee: 2500 },
+        { range: [21, 50], fee: 4500 },
+        { range: [51, 100], fee: 7000 },
+        { range: [101, Infinity], fee: "Contact us for Pricing" },
       ],
       FullManagement: "Contact us for Pricing",
     },
@@ -73,9 +76,10 @@ export const UnitType: UnitType[] = [
     type: "Duplex",
     pricing: {
       RentCollection: [
-        { range: [1, 15], fee: 5000 },
-        { range: [16, 25], fee: 8000 },
-        { range: [26, Infinity], fee: "Contact us for Pricing" },
+        { range: [5, 20], fee: 2500 },
+        { range: [21, 50], fee: 4500 },
+        { range: [51, 100], fee: 7000 },
+        { range: [101, Infinity], fee: "Contact us for Pricing" },
       ],
       FullManagement: "Contact us for Pricing",
     },
@@ -84,9 +88,10 @@ export const UnitType: UnitType[] = [
     type: "Commercial",
     pricing: {
       RentCollection: [
-        { range: [1, 15], fee: 5000 },
-        { range: [16, 25], fee: 8000 },
-        { range: [26, Infinity], fee: "Contact us for Pricing" },
+        { range: [5, 20], fee: 2500 },
+        { range: [21, 50], fee: 4500 },
+        { range: [51, 100], fee: 7000 },
+        { range: [101, Infinity], fee: "Contact us for Pricing" },
       ],
       FullManagement: "Contact us for Pricing",
     },

@@ -174,9 +174,9 @@ export default function Pricing() {
               <thead>
                 <tr>
                   <th scope="col">Unit Type</th>
-                  <th scope="col">Rent Collection (1-15 units)</th>
-                  <th scope="col">Rent Collection (16-25 units)</th>
-                  <th scope="col">Rent Collection (26+ units)</th>
+                  <th scope="col">Rent Collection (5-20 units)</th>
+                  <th scope="col">Rent Collection (21-50 units)</th>
+                  <th scope="col">Rent Collection (50-100 units)</th>
                   <th scope="col">Full Management</th>
                 </tr>
               </thead>
