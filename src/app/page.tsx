@@ -199,42 +199,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="stats py-16 bg-gray-50" ref={statsRef}>
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-12 text-blue-900">Our Impact</h2>
-          <div className="stats-grid grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="stat-item">
-              <span className="stat-number text-5xl font-bold text-blue-600" data-target="500">0</span>
-              <p className="mt-2 text-lg">Properties Managed</p>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number text-5xl font-bold text-blue-600" data-target="95">0</span>
-              <p className="mt-2 text-lg">Client Satisfaction (%)</p>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number text-5xl font-bold text-blue-600" data-target="1000">0</span>
-              <p className="mt-2 text-lg">Tenants Placed</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="cta-banner py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Property Management?</h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto">
-            Partner with Smart Choice for professional, hassle-free rental solutions.
-          </p>
-          <button
-            className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold flex items-center mx-auto hover:bg-blue-700 transition"
-            onClick={() => router.push("/contact")}
-            aria-label="Contact us to get started"
-          >
-            Contact Us <ArrowRight size={20} className="ml-2" />
-          </button>
-        </div>
-      </section>
-
       <section className="newsletter py-16 bg-blue-900 text-white">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-6">Stay Updated</h2>
