@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Shield, Users, Mail, CheckCircle, FileText, Wrench, Scale, BarChart, ChevronUp } from "lucide-react";
+import { ArrowRight, Shield, Users, Mail, FileText, Wrench, Scale, BarChart, ChevronUp } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
