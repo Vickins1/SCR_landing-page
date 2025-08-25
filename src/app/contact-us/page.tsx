@@ -21,42 +21,42 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="contact-page bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 min-h-screen">
+    <div className="contact-page">
       <section className="contact-hero">
         <div className="contact-hero-content">
-          <h1 className="contact-title">Connect with Smart Choice</h1>
-          <p className="contact-subtitle">Your trusted partner in property solutions.</p>
+          <h1 className="contact-title">Get in Touch with Smart Choice</h1>
+          <p className="contact-subtitle">Your trusted partner for seamless property management solutions.</p>
         </div>
       </section>
-      <section className="contact-container max-w-6xl mx-auto px-6 py-12">
-        <div className="contact-grid grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="contact-info bg-white/80 backdrop-blur-md p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-            <h2 className="contact-heading">Contact Details</h2>
-            <div className="space-y-6 mt-6">
-              <p className="contact-detail flex items-center">
-                <Mail className="contact-icon text-green-300 w-6 h-6 mr-4 animate-pulse-slow" />
+      <section className="contact-container">
+        <div className="contact-grid">
+          <div className="contact-info">
+            <h2 className="contact-heading">Contact Information</h2>
+            <div className="contact-details">
+              <div className="contact-detail">
+                <Mail className="contact-icon" />
                 <span>smartchoicerentalmanagement@gmail.com</span>
-              </p>
-              <p className="contact-detail flex items-center">
-                <Phone className="contact-icon text-green-300 w-6 h-6 mr-4 animate-pulse-slow" />
-                <span>+254 117 649 850 Or +254 702 036 837</span>
-              </p>
-              <p className="contact-detail flex items-center">
-                <MapPin className="contact-icon text-green-300 w-6 h-6 mr-4 animate-pulse-slow" />
+              </div>
+              <div className="contact-detail">
+                <Phone className="contact-icon" />
+                <span>+254 117 649 850 / +254 702 036 837</span>
+              </div>
+              <div className="contact-detail">
+                <MapPin className="contact-icon" />
                 <span>Kerugoya, Kenya</span>
-              </p>
+              </div>
             </div>
-            <div className="mt-8">
+            <div className="office-hours">
               <h3 className="contact-subheading">Office Hours</h3>
               <p className="contact-text">Monday - Friday: 8:00 AM - 5:00 PM EAT</p>
               <p className="contact-text">Saturday: 9:00 AM - 1:00 PM EAT</p>
             </div>
           </div>
-          <div className="contact-form bg-white/80 backdrop-blur-md p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="contact-form">
             <h2 className="contact-heading">Send Us a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6 mt-6">
-              <div>
-                <label htmlFor="name" className="contact-label block text-sm font-medium text-gray-700">
+            <form onSubmit={handleSubmit} className="form-grid">
+              <div className="form-group">
+                <label htmlFor="name" className="contact-label">
                   Full Name
                 </label>
                 <input
@@ -70,8 +70,8 @@ export default function ContactUs() {
                   aria-required="true"
                 />
               </div>
-              <div>
-                <label htmlFor="email" className="contact-label block text-sm font-medium text-gray-700">
+              <div className="form-group">
+                <label htmlFor="email" className="contact-label">
                   Email Address
                 </label>
                 <input
@@ -85,8 +85,8 @@ export default function ContactUs() {
                   aria-required="true"
                 />
               </div>
-              <div>
-                <label htmlFor="message" className="contact-label block text-sm font-medium text-gray-700">
+              <div className="form-group form-group-full">
+                <label htmlFor="message" className="contact-label">
                   Message
                 </label>
                 <textarea
@@ -94,7 +94,7 @@ export default function ContactUs() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Your message here"
-                  className="contact-input h-32 resize-none"
+                  className="contact-input contact-textarea"
                   required
                   aria-required="true"
                 />
@@ -116,7 +116,7 @@ export default function ContactUs() {
                   </>
                 ) : (
                   <>
-                    <Send size={18} className="mr-2 animate-bounce" aria-hidden="true" />
+                    <Send size={18} className="mr-2" aria-hidden="true" />
                     Send Message
                   </>
                 )}
