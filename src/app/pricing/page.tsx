@@ -60,10 +60,13 @@ export default function Pricing() {
     <div className="content">
       <section className="pricing-hero">
         <div className="pricing-hero-content">
-          <h1 className="pricing-title">Tailored Property Management Pricing</h1>
+          <h1 className="pricing-title">Elevate Your Property Management</h1>
           <p className="pricing-subtitle">
-            Discover flexible pricing plans designed for your property management needs.
+            Streamlined pricing plans crafted for seamless property management solutions.
           </p>
+          <button type="button" className="hero-cta-button" onClick={handleGetStarted}>
+          Get Started Now
+          </button>
         </div>
       </section>
 

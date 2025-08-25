@@ -18,22 +18,23 @@
   .pricing-hero {
     position: relative;
     width: 100%;
-    padding: clamp(4rem, 10vw, 7rem) 1rem;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #3b82f6 100%);
+    padding: clamp(5rem, 12vw, 8rem) 1rem;
+    background: linear-gradient(120deg, var(--primary-color) 0%, #2563eb 100%);
     color: #ffffff;
     text-align: center;
-    border-radius: 0 0 0.5rem 0.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: -25px;
   }
 
   .pricing-hero-content {
-    max-width: 90%;
-    padding: 1.5rem;
+    max-width: 85%;
+    padding: 2rem;
     position: relative;
     z-index: 2;
+    animation: fadeIn 1.2s ease-out;
   }
 
   .pricing-hero::before {
@@ -43,30 +44,48 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25), transparent 70%);
-    opacity: 0.6;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"%3E%3Cpath fill="rgba(255,255,255,0.1)" d="M400 0C179.085 0 0 179.085 0 400s179.085 400 400 400 400-179.085 400-400S620.915 0 400 0zm0 720c-176.731 0-320-143.269-320-320S223.269 80 400 80s320 143.269 320 320-143.269 320-320 320z"/%3E%3C/svg%3E');
+    background-size: 50%;
+    opacity: 0.15;
     z-index: 1;
+    animation: subtleRotate 20s linear infinite;
   }
 
   .pricing-title {
-    font-size: clamp(1.8rem, 4.5vw, 3rem);
-    font-weight: 900;
-    line-height: 1.2;
-    background: linear-gradient(90deg, #ffffff, #d1d5db);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: 0.75rem;
-    animation: slideUp 1s ease-out;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .pricing-subtitle {
-    font-size: clamp(1rem, 2.2vw, 1.3rem);
-    font-weight: 400;
-    color: #e5e7eb;
-    max-width: 85%;
-    margin: 0 auto;
-    letter-spacing: 0.02em;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    color: #f1f5f9;
+    max-width: 75%;
+    margin: 0 auto 1.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta-button {
+    padding: 0.75rem 2.5rem;
+    background: linear-gradient(135deg, var(--secondary-color), #10b981);
+    color: #ffffff;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 600;
+    border-radius: 2rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-cta-button:hover {
+    background: linear-gradient(135deg, #10b981, var(--secondary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   }
 
   .pricing-container {
@@ -327,11 +346,17 @@
     }
 
     .pricing-title {
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-size: clamp(1.8rem, 4.5vw, 2.5rem);
     }
 
     .pricing-subtitle {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      max-width: 90%;
+    }
+
+    .hero-cta-button {
+      padding: 0.75rem 2rem;
+      font-size: clamp(0.85rem, 1.8vw, 1rem);
     }
 
     .pricing-container {
@@ -395,7 +420,7 @@
     }
 
     .pricing-hero {
-      padding: clamp(5rem, 10vw, 6rem) 2rem;
+      padding: clamp(6rem, 10vw, 7rem) 2rem;
     }
   }
 
@@ -405,20 +430,30 @@
     .get-started-button:hover,
     .quantity-button:hover,
     .management-button:hover,
-    .comparison-toggle:hover {
+    .comparison-toggle:hover,
+    .hero-cta-button:hover {
       transform: none;
       box-shadow: none;
     }
   }
 
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes subtleRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   /* Dark mode */
   .dark .content {
     background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+  }
+
+  .dark .pricing-hero::before {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"%3E%3Cpath fill="rgba(255,255,255,0.05)" d="M400 0C179.085 0 0 179.085 0 400s179.085 400 400 400 400-179.085 400-400S620.915 0 400 0zm0 720c-176.731 0-320-143.269-320-320S223.269 80 400 80s320 143.269 320 320-143.269 320-320 320z"/%3E%3C/svg%3E');
   }
 
   .dark .pricing-calculator {
