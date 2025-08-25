@@ -19,7 +19,7 @@ export default function Pricing() {
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value === "") {
-      setQuantity(1); // Default to 1 if input is cleared
+      setQuantity(1);
     } else {
       const parsed = parseInt(value);
       if (!isNaN(parsed) && parsed >= 1) {
@@ -51,7 +51,7 @@ export default function Pricing() {
   };
 
   const handleGetStarted = () => {
-    router.push("/signup");
+    router.push("https://app.smartchoicerentalmanagement.com/sign-up");
   };
 
   const fee = getManagementFee({ type: selectedUnitType, managementType, quantity });
@@ -70,16 +70,16 @@ export default function Pricing() {
       <section className="pricing-container">
         <div className="pricing-calculator">
           <h2>Calculate Your Management Fees</h2>
-          <div className="grid gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="unit-type">
+          <div className="calculator-grid">
+            <div className="input-group">
+              <label className="input-label" htmlFor="unit-type">
                 Unit Type
               </label>
               <select
                 id="unit-type"
                 value={selectedUnitType}
                 onChange={handleUnitTypeChange}
-                className="w-full"
+                className="input-field"
                 aria-label="Select unit type"
               >
                 {UnitType.map((unit) => (
@@ -89,8 +89,8 @@ export default function Pricing() {
                 ))}
               </select>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="quantity">
+            <div className="input-group">
+              <label className="input-label" htmlFor="quantity">
                 Number of Units
               </label>
               <div className="quantity-input-container">
@@ -101,7 +101,7 @@ export default function Pricing() {
                   aria-label="Decrease number of units"
                   disabled={quantity <= 1}
                 >
-                  <Minus className="w-5 h-5" />
+                  <Minus className="icon" />
                 </button>
                 <input
                   id="quantity"
@@ -119,17 +119,17 @@ export default function Pricing() {
                   className="quantity-button"
                   aria-label="Increase number of units"
                 >
-                  <Plus className="w-5 h-5" />
+                  <Plus className="icon" />
                 </button>
               </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Management Type</label>
-              <div className="flex space-x-4">
+            <div className="input-group">
+              <label className="input-label">Management Type</label>
+              <div className="management-type-buttons">
                 <button
                   type="button"
                   onClick={() => handleManagementTypeChange("RentCollection")}
-                  className={`flex-1 ${managementType === "RentCollection" ? "bg-blue-600" : "bg-gray-200"}`}
+                  className={`management-button ${managementType === "RentCollection" ? "active" : ""}`}
                   aria-pressed={managementType === "RentCollection"}
                 >
                   Rent Collection
@@ -137,7 +137,7 @@ export default function Pricing() {
                 <button
                   type="button"
                   onClick={() => handleManagementTypeChange("FullManagement")}
-                  className={`flex-1 ${managementType === "FullManagement" ? "bg-blue-600" : "bg-gray-200"}`}
+                  className={`management-button ${managementType === "FullManagement" ? "active" : ""}`}
                   aria-pressed={managementType === "FullManagement"}
                 >
                   Full Management
@@ -145,11 +145,11 @@ export default function Pricing() {
               </div>
             </div>
           </div>
-          <div className="mt-8 text-center">
-            <p className="text-3xl font-bold text-green-500">
+          <div className="fee-display">
+            <p className="fee-amount">
               {typeof fee === "number" ? `KSH ${fee.toLocaleString()}/month` : fee}
             </p>
-            <button type="button" className="mt-6 bg-green-500" onClick={handleGetStarted}>
+            <button type="button" className="get-started-button" onClick={handleGetStarted}>
               Get Started Now
             </button>
           </div>
@@ -159,57 +159,60 @@ export default function Pricing() {
           <button
             type="button"
             onClick={() => setIsComparisonOpen(!isComparisonOpen)}
+            className="comparison-toggle"
             aria-expanded={isComparisonOpen}
             aria-controls="pricing-comparison-table"
           >
             Pricing Comparison
             {isComparisonOpen ? (
-              <ChevronUp className="ml-2 w-6 h-6" aria-hidden="true" />
+              <ChevronUp className="icon" aria-hidden="true" />
             ) : (
-              <ChevronDown className="ml-2 w-6 h-6" aria-hidden="true" />
+              <ChevronDown className="icon" aria-hidden="true" />
             )}
           </button>
           {isComparisonOpen && (
-            <table id="pricing-comparison-table" className="w-full">
-              <thead>
-                <tr>
-                  <th scope="col">Unit Type</th>
-                  <th scope="col">Rent Collection (5-20 units)</th>
-                  <th scope="col">Rent Collection (21-50 units)</th>
-                  <th scope="col">Rent Collection (50-100 units)</th>
-                  <th scope="col">Full Management</th>
-                </tr>
-              </thead>
-              <tbody>
-                {UnitType.map((unit) => (
-                  <tr key={unit.type}>
-                    <td>{unit.type}</td>
-                    <td>
-                      {unit.pricing.RentCollection[0]?.fee
-                        ? typeof unit.pricing.RentCollection[0].fee === "number"
-                          ? `KSH ${unit.pricing.RentCollection[0].fee.toLocaleString()}`
-                          : unit.pricing.RentCollection[0].fee
-                        : "N/A"}
-                    </td>
-                    <td>
-                      {unit.pricing.RentCollection[1]?.fee
-                        ? typeof unit.pricing.RentCollection[1].fee === "number"
-                          ? `KSH ${unit.pricing.RentCollection[1].fee.toLocaleString()}`
-                          : unit.pricing.RentCollection[1].fee
-                        : "N/A"}
-                    </td>
-                    <td>
-                      {unit.pricing.RentCollection[2]?.fee
-                        ? typeof unit.pricing.RentCollection[2].fee === "number"
-                          ? `KSH ${unit.pricing.RentCollection[2].fee.toLocaleString()}`
-                          : unit.pricing.RentCollection[2].fee
-                        : "Contact us for Pricing"}
-                    </td>
-                    <td>{unit.pricing.FullManagement}</td>
+            <div className="table-container">
+              <table id="pricing-comparison-table" className="comparison-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Unit Type</th>
+                    <th scope="col">Rent Collection (5-20 units)</th>
+                    <th scope="col">Rent Collection (21-50 units)</th>
+                    <th scope="col">Rent Collection (50-100 units)</th>
+                    <th scope="col">Full Management</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {UnitType.map((unit) => (
+                    <tr key={unit.type}>
+                      <td>{unit.type}</td>
+                      <td>
+                        {unit.pricing.RentCollection[0]?.fee
+                          ? typeof unit.pricing.RentCollection[0].fee === "number"
+                            ? `KSH ${unit.pricing.RentCollection[0].fee.toLocaleString()}`
+                            : unit.pricing.RentCollection[0].fee
+                          : "N/A"}
+                      </td>
+                      <td>
+                        {unit.pricing.RentCollection[1]?.fee
+                          ? typeof unit.pricing.RentCollection[1].fee === "number"
+                            ? `KSH ${unit.pricing.RentCollection[1].fee.toLocaleString()}`
+                            : unit.pricing.RentCollection[1].fee
+                          : "N/A"}
+                      </td>
+                      <td>
+                        {unit.pricing.RentCollection[2]?.fee
+                          ? typeof unit.pricing.RentCollection[2].fee === "number"
+                            ? `KSH ${unit.pricing.RentCollection[2].fee.toLocaleString()}`
+                            : unit.pricing.RentCollection[2].fee
+                          : "Contact us for Pricing"}
+                      </td>
+                      <td>{unit.pricing.FullManagement}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       </section>

@@ -1,12 +1,12 @@
 @layer components {
   :root {
-    --primary-color: #1e40af; /* Vibrant blue for modern appeal */
-    --secondary-color: #34d399; /* Bright green for accents */
-    --accent-color: #f59e0b; /* Warm amber for highlights */
-    --bg-color: #f8fafc; /* Soft off-white for clean background */
-    --text-color: #111827; /* Deep gray for readability */
-    --card-bg: #ffffff; /* Pure white for cards */
-    --border-color: #d1d5db; /* Subtle gray for borders */
+    --primary-color: #1e40af; /* Vibrant blue */
+    --secondary-color: #34d399; /* Bright green */
+    --accent-color: #f59e0b; /* Warm amber */
+    --bg-color: #f8fafc; /* Off-white background */
+    --text-color: #111827; /* Deep gray */
+    --card-bg: #ffffff; /* White for cards */
+    --border-color: #d1d5db; /* Subtle gray */
   }
 
   .content {
@@ -18,25 +18,22 @@
   .pricing-hero {
     position: relative;
     width: 100%;
-    padding: clamp(5rem, 12vw, 8rem) 1rem;
+    padding: clamp(4rem, 10vw, 7rem) 1rem;
     background: linear-gradient(135deg, var(--primary-color) 0%, #3b82f6 100%);
     color: #ffffff;
     text-align: center;
-    min-height: 20vh;
-    border-radius: 0 0 40px 40px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    animation: fadeIn 1.5s ease-out;
   }
 
   .pricing-hero-content {
-    max-width: 85%;
-    padding: 2rem;
-    z-index: 2;
+    max-width: 90%;
+    padding: 1.5rem;
     position: relative;
+    z-index: 2;
   }
 
   .pricing-hero::before {
@@ -46,119 +43,92 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent 70%);
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25), transparent 70%);
+    opacity: 0.6;
     z-index: 1;
-    opacity: 0.5;
   }
 
   .pricing-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
     font-weight: 900;
     line-height: 1.2;
     background: linear-gradient(90deg, #ffffff, #d1d5db);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     animation: slideUp 1s ease-out;
   }
 
   .pricing-subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
     font-weight: 400;
     color: #e5e7eb;
-    max-width: 80%;
+    max-width: 85%;
     margin: 0 auto;
     letter-spacing: 0.02em;
   }
 
   .pricing-container {
-    margin-top: -4rem;
-    position: relative;
-    z-index: 10;
-    padding: 0 1.5rem;
-    max-width: 80rem;
+    margin-top: -3rem;
+    padding: 0 1rem;
+    max-width: 90rem;
     margin-left: auto;
     margin-right: auto;
   }
 
   .pricing-calculator {
     background: var(--card-bg);
-    border-radius: 1.25rem;
-    padding: 2.5rem;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    animation: slideUp 0.8s ease-out;
+    border-radius: 1rem;
+    padding: clamp(1.5rem, 4vw, 2rem);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .pricing-calculator:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   }
 
   .pricing-calculator h2 {
-    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-size: clamp(1.4rem, 3.2vw, 2rem);
     font-weight: 800;
     color: var(--primary-color);
     text-align: center;
-    margin-bottom: 2rem;
-    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
   }
 
-  .pricing-calculator select,
-  .pricing-calculator input {
-    background-color: #f1f5f9;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    padding: 0.875rem;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+  .calculator-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
   }
 
-  .pricing-calculator select:focus,
-  .pricing-calculator input:focus {
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2);
-    outline: none;
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .pricing-calculator button {
-    padding: 0.875rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-
-  .pricing-calculator button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  .pricing-calculator .bg-blue-600 {
-    background: linear-gradient(135deg, var(--primary-color), #60a5fa);
-    color: #ffffff;
-  }
-
-  .pricing-calculator .bg-gray-200 {
-    background: #e5e7eb;
+  .input-label {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 500;
     color: var(--text-color);
   }
 
-  .pricing-calculator .bg-green-500 {
-    background: linear-gradient(135deg, var(--secondary-color), #10b981);
-    color: #ffffff;
-    font-weight: 700;
-    padding: 1rem 2.5rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  .input-field {
+    background-color: #f1f5f9;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     transition: all 0.3s ease;
   }
 
-  .pricing-calculator .bg-green-500:hover {
-    background: linear-gradient(135deg, #10b981, var(--secondary-color));
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-    transform: translateY(-3px);
+  .input-field:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2);
+    outline: none;
   }
 
   .quantity-input-container {
@@ -167,8 +137,7 @@
     gap: 0.25rem;
     background: linear-gradient(145deg, #ffffff, #e5e7eb);
     border: 1px solid var(--border-color);
-    border-radius: 0.75rem;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
     padding: 0.25rem;
     transition: border-color 0.3s ease;
   }
@@ -183,11 +152,11 @@
     border: none;
     background: transparent;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     font-weight: 500;
     color: var(--text-color);
-    padding: 0.75rem 0;
-    width: 4rem;
+    padding: 0.5rem 0;
+    width: 3.5rem;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: textfield;
@@ -199,8 +168,6 @@
   }
 
   .quantity-input:focus {
-    border: none;
-    box-shadow: none;
     outline: none;
   }
 
@@ -208,211 +175,245 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 2.25rem;
+    height: 2.25rem;
     background: linear-gradient(145deg, #f3f4f6, #e5e7eb);
     border: none;
     border-radius: 0.5rem;
     color: var(--text-color);
     cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
   }
 
   .quantity-button:hover {
     background: linear-gradient(145deg, var(--secondary-color), #10b981);
     color: #ffffff;
-    transform: scale(1.05);
   }
 
   .quantity-button:disabled {
     background: #e5e7eb;
     color: #9ca3af;
     cursor: not-allowed;
-    transform: none;
   }
 
-  .quantity-button:disabled:hover {
-    background: #e5e7eb;
-    color: #9ca3af;
-  }
-
-  .quantity-button svg {
+  .icon {
     width: 1.25rem;
     height: 1.25rem;
   }
 
-  .pricing-comparison {
-    margin-top: 2.5rem;
-    padding: 1.5rem;
+  .management-type-buttons {
+    display: flex;
+    gap: 0.5rem;
   }
 
-  .pricing-comparison button {
+  .management-button {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 600;
+    background: #e5e7eb;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+  }
+
+  .management-button.active {
+    background: linear-gradient(135deg, var(--primary-color), #60a5fa);
+    color: #ffffff;
+  }
+
+  .management-button:hover {
+    background: linear-gradient(135deg, var(--primary-color), #60a5fa);
+    color: #ffffff;
+  }
+
+  .fee-display {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .fee-amount {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--secondary-color);
+  }
+
+  .get-started-button {
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, var(--secondary-color), #10b981);
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .get-started-button:hover {
+    background: linear-gradient(135deg, #10b981, var(--secondary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  }
+
+  .pricing-comparison {
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+
+  .comparison-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 1rem;
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    padding: 0.75rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: 700;
     color: var(--primary-color);
     background: transparent;
     border: none;
-    transition: color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
   }
 
-  .pricing-comparison button:hover {
+  .comparison-toggle:hover {
     color: var(--secondary-color);
-    transform: translateY(-2px);
   }
 
-  .pricing-comparison table {
+  .table-container {
+    overflow-x: auto;
+    margin-top: 1rem;
+  }
+
+  .comparison-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
     background: var(--card-bg);
-    animation: slideUp 0.8s ease-out;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   }
 
-  .pricing-comparison th,
-  .pricing-comparison td {
-    padding: 1.25rem;
+  .comparison-table th,
+  .comparison-table td {
+    padding: clamp(0.75rem, 2vw, 1rem);
     text-align: center;
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     border-bottom: 1px solid #e5e7eb;
   }
 
-  .pricing-comparison th {
+  .comparison-table th {
     background: linear-gradient(135deg, var(--primary-color), #3b82f6);
     color: #ffffff;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
 
-  .pricing-comparison td {
-    background-color: var(--card-bg);
+  .comparison-table td {
+    background: var(--card-bg);
     color: var(--text-color);
   }
 
-  .pricing-comparison tr:nth-child(even) td {
-    background-color: #f1f5f9;
+  .comparison-table tr:nth-child(even) td {
+    background: #f1f5f9;
   }
 
-  .pricing-comparison tr:last-child td {
+  .comparison-table tr:last-child td {
     border-bottom: none;
   }
 
   /* Mobile */
   @media (max-width: 640px) {
     .pricing-hero {
-      padding: 3.5rem 1rem;
-      min-height: 15vh;
+      padding: clamp(3rem, 8vw, 4rem) 1rem;
     }
 
     .pricing-title {
-      font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
     }
 
     .pricing-subtitle {
-      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
     }
 
     .pricing-container {
-      margin-top: -2.5rem;
-      padding: 0 1rem;
+      margin-top: -2rem;
+      padding: 0 0.75rem;
     }
 
     .pricing-calculator {
-      padding: 1.5rem;
+      padding: clamp(1rem, 3vw, 1.5rem);
     }
 
-    .pricing-calculator .grid {
-      grid-template-columns: 1fr;
-    }
-
-    .pricing-comparison table {
-      font-size: 0.85rem;
-    }
-
-    .pricing-comparison th,
-    .pricing-comparison td {
-      padding: 0.75rem;
-      min-width: 70px;
+    .calculator-grid {
+      gap: 0.75rem;
     }
 
     .quantity-input-container {
-      max-width: 12rem;
+      max-width: 10rem;
       margin: 0 auto;
     }
 
-    .quantity-button {
-      width: 2.25rem;
-      height: 2.25rem;
+    .management-type-buttons {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .table-container {
+      margin: 0 -0.75rem;
+      padding: 0 0.75rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      min-width: 100px;
+      font-size: clamp(0.8rem, 1.7vw, 0.9rem);
     }
   }
 
   /* Tablet */
-  @media (min-width: 640px) and (max-width: 1023px) {
-    .pricing-container {
-      padding: 0 1.5rem;
-    }
-
-    .pricing-calculator .grid {
+  @media (min-width: 641px) and (max-width: 1023px) {
+    .calculator-grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .pricing-calculator .grid > div:last-child {
+    .input-group:last-child {
       grid-column: span 2;
     }
 
     .pricing-hero {
-      padding: 5rem 2rem;
+      padding: clamp(4rem, 9vw, 5rem) 1.5rem;
     }
   }
 
   /* Desktop */
   @media (min-width: 1024px) {
+    .calculator-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     .pricing-container {
-      padding: 0 3rem;
+      padding: 0 2rem;
     }
 
     .pricing-hero {
-      padding: 7rem 2rem;
-    }
-
-    .pricing-calculator .grid {
-      grid-template-columns: repeat(3, 1fr);
+      padding: clamp(5rem, 10vw, 6rem) 2rem;
     }
   }
 
   /* Disable hover on touch devices */
   @media (hover: none) {
     .pricing-calculator:hover,
-    .pricing-calculator .bg-green-500:hover,
-    .pricing-comparison button:hover,
-    .quantity-button:hover {
+    .get-started-button:hover,
+    .quantity-button:hover,
+    .management-button:hover,
+    .comparison-toggle:hover {
       transform: none;
       box-shadow: none;
     }
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
   }
 
   /* Dark mode */
@@ -422,29 +423,22 @@
 
   .dark .pricing-calculator {
     background: #1f2937;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
 
   .dark .pricing-calculator h2 {
     color: #60a5fa;
   }
 
-  .dark .pricing-calculator select,
-  .dark .pricing-calculator input {
+  .dark .input-field {
     background-color: #374151;
     border-color: #4b5563;
-    color: #e5e7eb;
-  }
-
-  .dark .pricing-calculator .bg-gray-200 {
-    background: #4b5563;
     color: #e5e7eb;
   }
 
   .dark .quantity-input-container {
     background: linear-gradient(145deg, #374151, #1f2937);
     border-color: #4b5563;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .dark .quantity-input {
@@ -466,22 +460,27 @@
     color: #6b7280;
   }
 
-  .dark .quantity-button:disabled:hover {
-    background: #374151;
-    color: #6b7280;
-  }
-
-  .dark .pricing-comparison th {
-    background: linear-gradient(145deg, #1e40af, #60a5fa);
-    color: #ffffff;
-  }
-
-  .dark .pricing-comparison td {
-    background-color: #1f2937;
+  .dark .management-button {
+    background: #4b5563;
     color: #e5e7eb;
   }
 
-  .dark .pricing-comparison tr:nth-child(even) td {
-    background-color: #374151;
+  .dark .management-button.active,
+  .dark .management-button:hover {
+    background: linear-gradient(135deg, var(--primary-color), #60a5fa);
+    color: #ffffff;
+  }
+
+  .dark .comparison-table th {
+    background: linear-gradient(135deg, var(--primary-color), #60a5fa);
+  }
+
+  .dark .comparison-table td {
+    background: #1f2937;
+    color: #e5e7eb;
+  }
+
+  .dark .comparison-table tr:nth-child(even) td {
+    background: #374151;
   }
 }
