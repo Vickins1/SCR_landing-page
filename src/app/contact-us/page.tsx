@@ -24,14 +24,14 @@ export default function ContactUs() {
     <div className="contact-page">
       <section className="contact-hero">
         <div className="contact-hero-content">
-          <h1 className="contact-title">Get in Touch with Smart Choice</h1>
-          <p className="contact-subtitle">Your trusted partner for seamless property management solutions.</p>
+          <h1 className="contact-title">Connect with Smart Choice</h1>
+          <p className="contact-subtitle">Your partner for seamless property management solutions.</p>
         </div>
       </section>
       <section className="contact-container">
         <div className="contact-grid">
           <div className="contact-info">
-            <h2 className="contact-heading">Contact Information</h2>
+            <h2 className="contact-heading">Get in Touch</h2>
             <div className="contact-details">
               <div className="contact-detail">
                 <Mail className="contact-icon" />
@@ -48,12 +48,12 @@ export default function ContactUs() {
             </div>
             <div className="office-hours">
               <h3 className="contact-subheading">Office Hours</h3>
-              <p className="contact-text">Monday - Friday: 8:00 AM - 5:00 PM EAT</p>
+              <p className="contact-text">Monday - Friday: 8:00 AM - 5:00 PMEAT</p>
               <p className="contact-text">Saturday: 9:00 AM - 1:00 PM EAT</p>
             </div>
           </div>
           <div className="contact-form">
-            <h2 className="contact-heading">Send Us a Message</h2>
+            <h2 className="contact-heading">Send a Message</h2>
             <form onSubmit={handleSubmit} className="form-grid">
               <div className="form-group">
                 <label htmlFor="name" className="contact-label">
@@ -108,7 +108,7 @@ export default function ContactUs() {
               >
                 {isSubmitting ? (
                   <>
-                    <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg className="animate-spin h-4 w-4 mr-2" viewBox="0 0 24 24" aria-hidden="true">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
@@ -116,7 +116,7 @@ export default function ContactUs() {
                   </>
                 ) : (
                   <>
-                    <Send size={18} className="mr-2" aria-hidden="true" />
+                    <Send size={16} className="mr-2" aria-hidden="true" />
                     Send Message
                   </>
                 )}
